@@ -23,6 +23,8 @@ import networkx as nx
 import osmnx as ox
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from risk_engine import router as risk_router
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -39,6 +41,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(risk_router)
 
 # ── Hyderabad bounding box (extend as needed) ────────────────────────────────
 CITY = "Hyderabad, Telangana, India"
