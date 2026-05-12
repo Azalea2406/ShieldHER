@@ -1,0 +1,38 @@
+# Add these dependencies to your pubspec.yaml under dependencies:
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP requests to HerMap FastAPI backend
+  http: ^1.2.1
+
+  # Google Maps for heatmap screen
+  google_maps_flutter: ^2.6.1
+
+  # Location access (for auto-filling lat/lng in report)
+  geolocator: ^12.0.0
+  permission_handler: ^11.3.0
+
+
+# ── SETUP NOTES ─────────────────────────────────────────────────────────────
+
+# 1. Get a Google Maps API key from: https://console.cloud.google.com
+#    Enable: Maps SDK for Android + Maps SDK for iOS
+
+# 2. Android — add to android/app/src/main/AndroidManifest.xml inside <application>:
+#    <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY"/>
+
+# 3. iOS — add to ios/Runner/AppDelegate.swift:
+#    import GoogleMaps
+#    GMSServices.provideAPIKey("YOUR_API_KEY")
+
+# 4. Location permissions — add to AndroidManifest.xml:
+#    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+#    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+#    <uses-permission android:name="android.permission.INTERNET"/>
+
+# 5. Connecting Flutter to WSL backend:
+#    Android emulator: use http://10.0.2.2:8000
+#    Physical device on same WiFi: use your WSL IP (run: ip addr show eth0)
+#    Update BASE_URL in hermap_report_screen.dart and hermap_heatmap_screen.dart
